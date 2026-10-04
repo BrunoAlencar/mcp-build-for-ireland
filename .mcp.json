@@ -7,6 +7,30 @@
     "project-docs": {
       "command": "node",
       "args": ["--import", "tsx", "src/project-docs.ts"]
+    },
+    "dublinked": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/dublinked.ts"]
+    },
+    "cso-statistics": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/cso-statistics.ts"]
+    },
+    "epa-environment": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/epa-environment.ts"]
+    },
+    "met-eireann": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/met-eireann.ts"]
+    },
+    "eirgrid-energy": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/eirgrid-energy.ts"]
+    },
+    "transport-tfi": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/transport-tfi.ts"]
     }
   }
 }

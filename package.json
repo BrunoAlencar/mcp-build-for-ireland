@@ -1,6 +1,6 @@
 {
   "name": "build-for-ireland-mcp",
-  "version": "0.2.0",
+  "version": "0.8.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -9,9 +9,21 @@
   "scripts": {
     "dev": "tsx src/index.ts",
     "dev:project-docs": "tsx src/project-docs.ts",
+    "dev:dublinked": "tsx src/dublinked.ts",
+    "dev:cso": "tsx src/cso-statistics.ts",
+    "dev:epa": "tsx src/epa-environment.ts",
+    "dev:met": "tsx src/met-eireann.ts",
+    "dev:eirgrid": "tsx src/eirgrid-energy.ts",
+    "dev:tfi": "tsx src/transport-tfi.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "start:project-docs": "node dist/project-docs.js",
+    "start:dublinked": "node dist/dublinked.js",
+    "start:cso": "node dist/cso-statistics.js",
+    "start:epa": "node dist/epa-environment.js",
+    "start:met": "node dist/met-eireann.js",
+    "start:eirgrid": "node dist/eirgrid-energy.js",
+    "start:tfi": "node dist/transport-tfi.js",
     "test": "node --import tsx --test src/*.test.ts"
   },
   "dependencies": {

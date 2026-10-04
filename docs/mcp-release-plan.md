@@ -15,6 +15,13 @@ The goal is a small, useful MCP server for each provider or local project file a
 | 0.7 | `eirgrid-energy` | Electricity demand and generation data with clear time intervals and units. | Units, timestamps, source, and update cadence are explicit in every response. |
 | 0.8 | `transport-tfi` | TFI/NTA transport data, starting with static timetable discovery and adding realtime access only where the official API and credentials allow. | Keys are configured locally and never returned to the model; calls respect provider limits. |
 
+## Status
+
+All eight releases are shipped. Each server's tools are listed in the [MCP guide](mcp-guide.md). Two limits remain:
+
+- `transport-tfi` realtime tools need `NTA_API_KEY` and have not been run against the live API; only the missing-key, rejected-key, caching, and response-mapping paths are tested.
+- `eirgrid-energy` depends on the undocumented endpoint behind the Smart Grid Dashboard.
+
 ## First release: `data-gov-ie`
 
 This is the best first daily-use connector because the national portal is the natural starting point for finding Irish public datasets. The portal's developer page documents the CKAN Action API, including dataset search and full dataset lookup. The first server exposes two bounded, read-only tools:
@@ -40,6 +47,7 @@ Requires Node.js 20 or later.
 npm install
 npm run dev               # data-gov-ie
 npm run dev:project-docs  # project-docs
+npm run dev:cso           # or dublinked, epa, met, eirgrid, tfi
 npm test
 ```
 

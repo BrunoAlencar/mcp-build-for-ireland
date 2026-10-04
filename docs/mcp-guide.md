@@ -4,7 +4,7 @@ MCP servers let an MCP-compatible AI client call focused tools. The servers in t
 
 ## Usage map
 
-The [README](../README.md#how-it-fits-together) shows this flow as a diagram. Connect an MCP client, then either search the live catalogue with `data-gov-ie` or read an API reference through `project-docs`. Dashed "or" links are alternatives, not a required order.
+The [README](../README.md#how-it-fits-together) shows this flow as a diagram. Connect an MCP client, then query a source live through its server, or read its API reference through `project-docs`. Dashed "or" links are alternatives, not a required order.
 
 | Box | Opens |
 | --- | --- |
@@ -80,18 +80,80 @@ The references were checked against the live services on 2026-10-04. Dataset cou
 
 The document list is read when the server starts; restart it after adding a new file under `docs/`.
 
-## Planned MCP servers
+## Available now: `dublinked`
 
-These are roadmap items in the [MCP release plan](mcp-release-plan.md); they are not available as tools yet.
+Searches the [Dublinked](https://data.smartdublin.ie/) catalogue of the four Dublin local authorities and reads rows from datasets held in its DataStore. No key. Reference: [apis/dublinked.md](apis/dublinked.md).
 
-| Planned server | Intended use |
-| --- | --- |
-| `cso-statistics` | Discover CSO PxStat tables and retrieve bounded statistical queries with dimensions and source metadata. |
-| `dublinked` | Search Dublin's transport, amenities, and infrastructure catalog. |
-| `epa-environment` | Find EPA environmental and water data with reporting-period metadata. |
-| `met-eireann` | Retrieve weather observations, forecasts, and warnings with valid and issue times. |
-| `eirgrid-energy` | Access electricity demand and generation data with units and time intervals. |
-| `transport-tfi` | Discover TFI/NTA timetables, with real-time access only where the official API permits it. |
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `search_datasets` | Searches the Dublin catalogue. | `query`; optional `limit` (1–25). |
+| `get_dataset` | Returns one dataset with its resources and whether each is in the DataStore. | `id`. |
+| `query_resource` | Reads rows from a DataStore resource. | `resourceId`; optional `query`, `filters`, `limit` (1–100), `offset`. |
+
+## Available now: `cso-statistics`
+
+Finds CSO PxStat tables and reads values as labelled rows with units. No key. Reference: [apis/cso-pxstat.md](apis/cso-pxstat.md).
+
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `search_tables` | Searches table codes, titles, and dimension names, newest first. The first call downloads the table list and takes a few seconds. | `query`; optional `limit` (1–50). |
+| `get_table` | Lists a table's dimensions with category codes, labels, and units. | `table` (such as `EIIA13`). |
+| `query_table` | Returns values as rows. Queries over 5,000 cells are refused; add filters. | `table`; optional `filters` (dimension code to category codes), `limit` (1–500). |
+
+## Available now: `epa-environment`
+
+Reads EPA Water Framework Directive status and bathing water quality. No key. Reference: [apis/epa.md](apis/epa.md).
+
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `search_water_bodies` | Finds rivers, lakes, coastal waters, and catchments by name. | `query`; optional `limit` (1–50), `page`. |
+| `get_water_body` | Returns ecological status, the elements behind it, risk, and location for recent assessment periods. | `code`; optional `periods` (1–6). |
+| `list_bathing_waters` | Lists monitored beaches and lakes with their current classification. | Optional `county`, `name`, `limit` (1–100). |
+| `list_bathing_alerts` | Lists current bathing incidents and restrictions. | None. |
+
+Water status is assessed over multi-year periods; it is not a live reading.
+
+## Available now: `met-eireann`
+
+Reads Met Éireann forecasts, warnings, and observations. No key. Reference: [apis/met-eireann.md](apis/met-eireann.md).
+
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `get_point_forecast` | Hourly forecast for one point, with the model run time kept separate from each hour's valid time (UTC). | `latitude` (51–56), `longitude` (-11 to -5); optional `hours` (1–72). |
+| `get_text_forecast` | The written forecast and when it was issued. | Optional `region` (National, Outlook, Dublin, or a province). |
+| `get_weather_warnings` | Warnings in force, with level, onset, and expiry. An empty list means none. | None. |
+| `get_latest_observations` | The latest hourly measurement from each station. Wind is in knots. | Optional `station`. |
+
+## Available now: `eirgrid-energy`
+
+Reads electricity system data from EirGrid's Smart Grid Dashboard. No key. Reference: [apis/eirgrid.md](apis/eirgrid.md).
+
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `get_system_data` | One series for one day, with a per-field summary (min, max, mean, latest) and recent readings. | `series` (demand, generation, wind, solar, their forecasts, co2_intensity, co2_emissions, interconnection, frequency, snsp, fuel_mix); optional `region` (ALL, ROI, NI), `date` (YYYY-MM-DD), `limit` (1–400). |
+
+This is the endpoint behind the dashboard, not a documented API; it can change without notice. Responses carry no units, so the unit shown is the dashboard's label.
+
+## Available now: `transport-tfi`
+
+Lists TFI timetable files and, with a key, reads live bus data from the NTA. Reference: [apis/nta-tfi.md](apis/nta-tfi.md).
+
+| Tool | What it does | Inputs |
+| --- | --- | --- |
+| `list_gtfs_feeds` | Lists the static GTFS timetable files with size and last-modified time. No key. It does not open the files. | Optional `operator`. |
+| `get_trip_updates` | Live delays and cancellations for Dublin Bus, Bus Éireann, and Go-Ahead Ireland. Needs a key. | Optional `routeId`, `stopId`, `limit` (1–50). |
+| `get_vehicle_positions` | Live vehicle positions for the same operators. Needs a key. | Optional `routeId`, `limit` (1–100). |
+
+The two live tools need `NTA_API_KEY` in the server's environment; see `.env.example`. Register at the [NTA developer portal](https://developer.nationaltransport.ie/). The key is never returned in tool output, and live results are cached for 60 seconds to respect the NTA limit of one call per minute. The live tools have not been run against the real API, because no key was available when they were built.
+
+### Things you can ask an MCP client
+
+- “What share of Irish rivers had high or good ecological status in the latest period?”
+- “What is the water quality status of the River Dodder?”
+- “Which Dublin beaches have a swim restriction right now?”
+- “What is the forecast for Galway for the next six hours, and are any warnings in force?”
+- “How much wind generation was there yesterday compared with demand?”
+- “Where are the Dublinbikes stations?”
 
 ## Run locally
 
@@ -101,6 +163,12 @@ From the repository root, use Node.js 20 or later:
 npm install
 npm run dev               # data-gov-ie
 npm run dev:project-docs  # project-docs
+npm run dev:dublinked     # dublinked
+npm run dev:cso           # cso-statistics
+npm run dev:epa           # epa-environment
+npm run dev:met           # met-eireann
+npm run dev:eirgrid       # eirgrid-energy
+npm run dev:tfi           # transport-tfi
 ```
 
-Configure your MCP client to launch `npm run dev` (or `npm run dev:project-docs`) in this repository. Each server communicates over stdio. See the [release plan](mcp-release-plan.md) for implementation details and client setup notes.
+`.mcp.json` registers all eight servers for MCP clients that read it, such as Claude Code. For other clients, configure each server to launch its `npm run dev:…` command in this repository. Each server communicates over stdio. See the [release plan](mcp-release-plan.md) for scope and limits.
