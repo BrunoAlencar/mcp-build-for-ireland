@@ -68,7 +68,7 @@ Largest publishers (dataset counts on 2026-10-04):
 | Tailte Éireann (`tailte-eireann`) | 192 |
 | Dublin City Council (`dublin-city-council`) | 161 |
 
-Datasets relevant to the hackathon themes:
+Datasets for common themes:
 
 | Theme | Dataset name (use with `package_show`) | Publisher | Formats |
 | --- | --- | --- | --- |

@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-The root contains `README.md`, this guide, and the Node/TypeScript package configuration. `src/` contains MCP server code; `docs/` holds the participant guide and release plan. Keep future provider connectors in focused modules. Keep generated `dist/`, dependencies, and local environment files out of source control.
+The root contains `README.md`, this guide, and the Node/TypeScript package configuration. `src/` contains MCP server code; `docs/` holds the MCP guide, release plan, and API references. Keep future provider connectors in focused modules. Keep generated `dist/`, dependencies, and local environment files out of source control.
 
 ## Build, Test, and Development Commands
 

@@ -10,7 +10,6 @@
         "id": "docs-path",
         "label": "Read the references",
         "focus": [
-          "guide",
           "client",
           "projectdocs",
           "ref-datagov",
@@ -46,7 +45,7 @@
     "legend": {
       "entries": {
         "frontend": {
-          "label": "You: client and demo"
+          "label": "MCP client"
         },
         "backend": {
           "label": "MCP server"
@@ -56,9 +55,6 @@
         },
         "cloud": {
           "label": "Feed reference"
-        },
-        "external": {
-          "label": "Guide"
         }
       }
     }
@@ -70,7 +66,7 @@
     },
     {
       "id": "start",
-      "label": "Start here"
+      "label": "Client and docs server"
     },
     {
       "id": "feeds",
@@ -78,28 +74,17 @@
     }
   ],
   "mainPath": [
-    "guide",
     "client",
     "projectdocs",
     "ref-datagov",
     "ref-dublinked",
-    "ref-cso",
-    "demo"
+    "ref-cso"
   ],
   "nodes": [
     {
-      "id": "guide",
-      "lane": "start",
-      "col": 0,
-      "type": "external",
-      "label": "Participant guide",
-      "sublabel": "challenge + data tips",
-      "width": 148
-    },
-    {
       "id": "client",
       "lane": "start",
-      "col": 1,
+      "col": 0,
       "type": "frontend",
       "label": "MCP client",
       "sublabel": "setup in MCP guide",
@@ -108,25 +93,16 @@
     {
       "id": "projectdocs",
       "lane": "start",
-      "col": 2,
+      "col": 1,
       "type": "backend",
       "label": "project-docs",
       "sublabel": "list / read / search",
       "width": 148
     },
     {
-      "id": "demo",
-      "lane": "start",
-      "col": 5,
-      "type": "frontend",
-      "label": "Your demo",
-      "sublabel": "release plan next",
-      "width": 148
-    },
-    {
       "id": "dgserver",
       "lane": "catalogues",
-      "col": 1,
+      "col": 0,
       "type": "backend",
       "label": "data-gov-ie",
       "sublabel": "search + get dataset",
@@ -135,7 +111,7 @@
     {
       "id": "ref-datagov",
       "lane": "catalogues",
-      "col": 3,
+      "col": 2,
       "type": "database",
       "label": "data.gov.ie",
       "sublabel": "22,762 datasets",
@@ -144,7 +120,7 @@
     {
       "id": "ref-dublinked",
       "lane": "catalogues",
-      "col": 4,
+      "col": 3,
       "type": "database",
       "label": "Dublinked",
       "sublabel": "Dublin councils",
@@ -153,7 +129,7 @@
     {
       "id": "ref-cso",
       "lane": "catalogues",
-      "col": 5,
+      "col": 4,
       "type": "database",
       "label": "CSO PxStat",
       "sublabel": "13,079 tables",
@@ -162,7 +138,7 @@
     {
       "id": "ref-nta",
       "lane": "feeds",
-      "col": 2,
+      "col": 1,
       "type": "cloud",
       "label": "NTA / TFI",
       "sublabel": "GTFS + realtime",
@@ -172,7 +148,7 @@
     {
       "id": "ref-eirgrid",
       "lane": "feeds",
-      "col": 3,
+      "col": 2,
       "type": "cloud",
       "label": "EirGrid",
       "sublabel": "demand + wind",
@@ -182,7 +158,7 @@
     {
       "id": "ref-epa",
       "lane": "feeds",
-      "col": 4,
+      "col": 3,
       "type": "cloud",
       "label": "EPA",
       "sublabel": "water + air + licences",
@@ -191,7 +167,7 @@
     {
       "id": "ref-met",
       "lane": "feeds",
-      "col": 5,
+      "col": 4,
       "type": "cloud",
       "label": "Met Éireann",
       "sublabel": "forecast + warnings",
@@ -199,12 +175,6 @@
     }
   ],
   "edges": [
-    {
-      "id": "guide-client",
-      "from": "guide",
-      "to": "client",
-      "variant": "default"
-    },
     {
       "id": "client-docs",
       "from": "client",
@@ -232,13 +202,6 @@
       "to": "ref-cso",
       "label": "or",
       "variant": "dashed"
-    },
-    {
-      "id": "cso-demo",
-      "from": "ref-cso",
-      "to": "demo",
-      "label": "build",
-      "variant": "emphasis"
     },
     {
       "id": "client-dgserver",

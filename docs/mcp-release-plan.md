@@ -7,7 +7,7 @@ The goal is a small, useful MCP server for each provider or local project file a
 | Release | Server | Scope | Ready when |
 | --- | --- | --- | --- |
 | 0.1 | `data-gov-ie` | Search the national dataset catalog and inspect dataset metadata, licenses, and resource links. Stdio transport; no key required. | Search and lookup work against the official catalog API; errors and timeouts are understandable. |
-| 0.2 | `project-docs` | Read and search the repository's README, participant guide, release plan, and later project notes as MCP resources/tools. Restrict access to approved documentation paths. | A client can find and read project guidance without exposing unrelated local files. |
+| 0.2 | `project-docs` | Read and search the repository's README, API references, release plan, and later project notes as MCP resources/tools. Restrict access to approved documentation paths. | A client can find and read project guidance without exposing unrelated local files. |
 | 0.3 | `cso-statistics` | Discover CSO PxStat tables and retrieve selected statistical data with source and update metadata. | A table can be found and a small, bounded query returned with dimensions explained. |
 | 0.4 | `dublinked` | Search Dublin's transport, amenities, and infrastructure catalog; reuse the national catalog tool pattern only after confirming the current API and its terms. | Catalog access, attribution, and dataset/resource links are verified. |
 | 0.5 | `epa-environment` | EPA environmental and water data, with source and reporting-period metadata. | The API, data update cycle, attribution, and practical query limits are confirmed. |
@@ -17,7 +17,7 @@ The goal is a small, useful MCP server for each provider or local project file a
 
 ## First release: `data-gov-ie`
 
-This is the best first daily-use connector because the participant guide recommends the national portal as the starting point for finding Irish public datasets. The portal's developer page documents the CKAN Action API, including dataset search and full dataset lookup. The first server exposes two bounded, read-only tools:
+This is the best first daily-use connector because the national portal is the natural starting point for finding Irish public datasets. The portal's developer page documents the CKAN Action API, including dataset search and full dataset lookup. The first server exposes two bounded, read-only tools:
 
 - `search_datasets(query, limit)` finds relevant catalog entries and returns concise metadata with source links.
 - `get_dataset(id)` retrieves one catalog record and lists its resources, formats, licenses, and update metadata.

@@ -63,7 +63,7 @@ Live APIs (all six datasets with format `API`):
 | `sonitus` | Noise and air quality monitoring (Dublin City Council). | API described in a text file. |
 | `beaches-api` | Bathing water. | See also the [EPA bathing water API](epa.md). |
 
-Datasets relevant to the hackathon themes:
+Datasets for common themes:
 
 | Theme | Dataset name | Publisher | Formats |
 | --- | --- | --- | --- |

@@ -7,11 +7,9 @@ const MARKER = "usage-map-links";
 
 // Node id (from usage-map.workflow.json) -> repository-relative document.
 const LINKS = {
-  guide: "docs/participant-guide.md",
   client: "docs/mcp-guide.md#run-locally",
   projectdocs: "docs/mcp-guide.md#available-now-project-docs",
   dgserver: "docs/mcp-guide.md#available-now-data-gov-ie",
-  demo: "docs/mcp-release-plan.md",
   "ref-datagov": "docs/apis/data-gov-ie.md",
   "ref-dublinked": "docs/apis/dublinked.md",
   "ref-cso": "docs/apis/cso-pxstat.md",

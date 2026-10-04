@@ -4,11 +4,10 @@ MCP servers let an MCP-compatible AI client call focused tools. The servers in t
 
 ## Usage map
 
-The [README](../README.md#how-it-fits-together) shows this flow as a diagram. Start with the participant guide, connect an MCP client, then either search the live catalogue with `data-gov-ie` or read an API reference through `project-docs`. Dashed "or" links are alternatives, not a required order.
+The [README](../README.md#how-it-fits-together) shows this flow as a diagram. Connect an MCP client, then either search the live catalogue with `data-gov-ie` or read an API reference through `project-docs`. Dashed "or" links are alternatives, not a required order.
 
 | Box | Opens |
 | --- | --- |
-| Participant guide | [participant-guide.md](participant-guide.md) |
 | MCP client | [Run locally](#run-locally) |
 | project-docs | [Available now: `project-docs`](#available-now-project-docs) |
 | data-gov-ie | [Available now: `data-gov-ie`](#available-now-data-gov-ie) |
@@ -19,7 +18,6 @@ The [README](../README.md#how-it-fits-together) shows this flow as a diagram. St
 | EirGrid | [apis/eirgrid.md](apis/eirgrid.md) |
 | EPA | [apis/epa.md](apis/epa.md) |
 | Met Éireann | [apis/met-eireann.md](apis/met-eireann.md) |
-| Your demo | [mcp-release-plan.md](mcp-release-plan.md) |
 
 The interactive version, where clicking a box opens its document, is [`diagrams/usage-map.html`](diagrams/usage-map.html): open it in a browser from a local clone, or serve it with GitHub Pages. To change the map, edit `diagrams/usage-map.workflow.json`, re-render with Archify, then run `node docs/diagrams/add-links.mjs`.
 
@@ -52,12 +50,11 @@ This server reads and searches this repository's project guidance. It is limited
 | Tool | What it does | Inputs |
 | --- | --- | --- |
 | `list_docs` | Lists the approved documents with path, title, and size. | None. |
-| `read_doc` | Returns one approved document's text. | `path` (a path from `list_docs`, such as `docs/participant-guide.md`). |
+| `read_doc` | Returns one approved document's text. | `path` (a path from `list_docs`, such as `docs/apis/epa.md`). |
 | `search_docs` | Finds lines containing every word of the query, case-insensitive. Returns the document path, line number, and nearest heading. | `query` (2–200 characters); optional `limit` (1–50, default 10). |
 
 ### Things you can ask an MCP client
 
-- “What does the participant guide say about the event schedule?”
 - “Which MCP servers are planned, and what makes each one ready to release?”
 - “Search the project docs for CSO and summarize where it is mentioned.”
 
@@ -67,7 +64,7 @@ This server reads and searches this repository's project guidance. It is limited
 
 ### API references served by `project-docs`
 
-`docs/apis/` holds one reference per data provider named in the participant guide. Each has the same sections: overview, authentication, endpoints, datasets, formats, licence and attribution, rate limits and update cadence, known gotchas, and source links.
+`docs/apis/` holds one reference per data provider. Each has the same sections: overview, authentication, endpoints, datasets, formats, licence and attribution, rate limits and update cadence, known gotchas, and source links.
 
 | Document | Provider |
 | --- | --- |
