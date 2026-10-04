@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "data-gov-ie": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/index.ts"]
+    },
+    "project-docs": {
+      "command": "node",
+      "args": ["--import", "tsx", "src/project-docs.ts"]
+    }
+  }
+}

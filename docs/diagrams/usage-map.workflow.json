@@ -1,0 +1,310 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Build for Ireland MCP: usage map",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "docs-path",
+        "label": "Read the references",
+        "focus": [
+          "guide",
+          "client",
+          "projectdocs",
+          "ref-datagov",
+          "ref-nta"
+        ],
+        "note": "Ask the MCP client; project-docs lists, reads, and searches the API references."
+      },
+      {
+        "id": "catalogues",
+        "label": "Find a dataset",
+        "focus": [
+          "client",
+          "dgserver",
+          "ref-datagov",
+          "ref-dublinked",
+          "ref-cso"
+        ],
+        "note": "Catalogues and statistics: search live with data-gov-ie, then read the matching reference."
+      },
+      {
+        "id": "live-feeds",
+        "label": "Use a live feed",
+        "focus": [
+          "projectdocs",
+          "ref-nta",
+          "ref-eirgrid",
+          "ref-epa",
+          "ref-met"
+        ],
+        "note": "Transport, energy, environment, and weather feeds, each with its own reference."
+      }
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "You: client and demo"
+        },
+        "backend": {
+          "label": "MCP server"
+        },
+        "database": {
+          "label": "Catalogue reference"
+        },
+        "cloud": {
+          "label": "Feed reference"
+        },
+        "external": {
+          "label": "Guide"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "catalogues",
+      "label": "Catalogues & statistics"
+    },
+    {
+      "id": "start",
+      "label": "Start here"
+    },
+    {
+      "id": "feeds",
+      "label": "Live & domain feeds"
+    }
+  ],
+  "mainPath": [
+    "guide",
+    "client",
+    "projectdocs",
+    "ref-datagov",
+    "ref-dublinked",
+    "ref-cso",
+    "demo"
+  ],
+  "nodes": [
+    {
+      "id": "guide",
+      "lane": "start",
+      "col": 0,
+      "type": "external",
+      "label": "Participant guide",
+      "sublabel": "challenge + data tips",
+      "width": 148
+    },
+    {
+      "id": "client",
+      "lane": "start",
+      "col": 1,
+      "type": "frontend",
+      "label": "MCP client",
+      "sublabel": "setup in MCP guide",
+      "width": 148
+    },
+    {
+      "id": "projectdocs",
+      "lane": "start",
+      "col": 2,
+      "type": "backend",
+      "label": "project-docs",
+      "sublabel": "list / read / search",
+      "width": 148
+    },
+    {
+      "id": "demo",
+      "lane": "start",
+      "col": 5,
+      "type": "frontend",
+      "label": "Your demo",
+      "sublabel": "release plan next",
+      "width": 148
+    },
+    {
+      "id": "dgserver",
+      "lane": "catalogues",
+      "col": 1,
+      "type": "backend",
+      "label": "data-gov-ie",
+      "sublabel": "search + get dataset",
+      "width": 148
+    },
+    {
+      "id": "ref-datagov",
+      "lane": "catalogues",
+      "col": 3,
+      "type": "database",
+      "label": "data.gov.ie",
+      "sublabel": "22,762 datasets",
+      "width": 148
+    },
+    {
+      "id": "ref-dublinked",
+      "lane": "catalogues",
+      "col": 4,
+      "type": "database",
+      "label": "Dublinked",
+      "sublabel": "Dublin councils",
+      "width": 148
+    },
+    {
+      "id": "ref-cso",
+      "lane": "catalogues",
+      "col": 5,
+      "type": "database",
+      "label": "CSO PxStat",
+      "sublabel": "13,079 tables",
+      "width": 148
+    },
+    {
+      "id": "ref-nta",
+      "lane": "feeds",
+      "col": 2,
+      "type": "cloud",
+      "label": "NTA / TFI",
+      "sublabel": "GTFS + realtime",
+      "tag": "key needed",
+      "width": 148
+    },
+    {
+      "id": "ref-eirgrid",
+      "lane": "feeds",
+      "col": 3,
+      "type": "cloud",
+      "label": "EirGrid",
+      "sublabel": "demand + wind",
+      "tag": "unofficial",
+      "width": 148
+    },
+    {
+      "id": "ref-epa",
+      "lane": "feeds",
+      "col": 4,
+      "type": "cloud",
+      "label": "EPA",
+      "sublabel": "water + air + licences",
+      "width": 148
+    },
+    {
+      "id": "ref-met",
+      "lane": "feeds",
+      "col": 5,
+      "type": "cloud",
+      "label": "Met Éireann",
+      "sublabel": "forecast + warnings",
+      "width": 148
+    }
+  ],
+  "edges": [
+    {
+      "id": "guide-client",
+      "from": "guide",
+      "to": "client",
+      "variant": "default"
+    },
+    {
+      "id": "client-docs",
+      "from": "client",
+      "to": "projectdocs",
+      "label": "ask",
+      "variant": "emphasis"
+    },
+    {
+      "id": "docs-catalogues",
+      "from": "projectdocs",
+      "to": "ref-datagov",
+      "label": "read_doc",
+      "variant": "emphasis"
+    },
+    {
+      "id": "datagov-dublinked",
+      "from": "ref-datagov",
+      "to": "ref-dublinked",
+      "label": "or",
+      "variant": "dashed"
+    },
+    {
+      "id": "dublinked-cso",
+      "from": "ref-dublinked",
+      "to": "ref-cso",
+      "label": "or",
+      "variant": "dashed"
+    },
+    {
+      "id": "cso-demo",
+      "from": "ref-cso",
+      "to": "demo",
+      "label": "build",
+      "variant": "emphasis"
+    },
+    {
+      "id": "client-dgserver",
+      "from": "client",
+      "to": "dgserver",
+      "label": "search live",
+      "variant": "default",
+      "role": "branch"
+    },
+    {
+      "id": "dgserver-datagov",
+      "from": "dgserver",
+      "to": "ref-datagov",
+      "label": "same catalogue",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "docs-feeds",
+      "from": "projectdocs",
+      "to": "ref-nta",
+      "label": "read_doc",
+      "variant": "default",
+      "role": "branch"
+    },
+    {
+      "id": "nta-eirgrid",
+      "from": "ref-nta",
+      "to": "ref-eirgrid",
+      "label": "or",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "eirgrid-epa",
+      "from": "ref-eirgrid",
+      "to": "ref-epa",
+      "label": "or",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "epa-met",
+      "from": "ref-epa",
+      "to": "ref-met",
+      "label": "or",
+      "variant": "dashed",
+      "role": "branch"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Click a box to open its document",
+      "items": [
+        "Each reference covers endpoints, datasets, licence, limits, and gotchas",
+        "Dashed \"or\" links are alternatives, not a required order"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Before you build on a source",
+      "items": [
+        "NTA realtime needs a key; EirGrid has no official API",
+        "References were checked against live services on 2026-10-04"
+      ]
+    }
+  ]
+}
